@@ -1,63 +1,52 @@
 import { useState } from 'react';
-import { FaWhatsapp, FaBars, FaTimes, FaGlobe } from 'react-icons/fa';
-import { useLang } from '../context/LanguageContext';
-import LanguageSwitcher from './LanguageSwitcher';
+import { FaBars, FaTimes } from 'react-icons/fa';
+
+const NAV_LINKS = [
+  { label: 'Home', href: '#home' },
+  { label: 'About Us', href: '#about' },
+  { label: 'TITP', href: '#pathways' },
+  { label: 'SSW', href: '#pathways' },
+  { label: 'Vacancies', href: '#vacancies' },
+  { label: 'Training', href: '#training' },
+  { label: 'Journey', href: '#process' },
+  { label: 'Contact', href: '#contact' },
+];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const { t } = useLang();
-
-  const navLinks = [
-    { key: 'nav_home',       href: '#home' },
-    { key: 'nav_vacancies',  href: '#vacancies' },
-    { key: 'nav_about',      href: '#about' },
-    { key: 'nav_employment', href: '#employment' },
-    { key: 'nav_contact',    href: '#contact' },
-  ];
 
   return (
     <nav className="navbar">
       <div className="navbar-inner">
         {/* Logo */}
         <a href="#home" className="navbar-logo">
-          <div className="navbar-logo-icon">
-            <FaGlobe color="white" size={22} />
-          </div>
+          <div className="navbar-logo-icon">OG</div>
           <div className="navbar-logo-text">
-            <span>OG AGENCY</span>
-            <span>{t.footer_tagline}</span>
+            <span className="logo-main">OG AGENCY</span>
+            <span className="logo-sub">Sri Lanka → Japan</span>
           </div>
         </a>
 
         {/* Nav Links */}
         <ul className={`navbar-links${open ? ' open' : ''}`}>
-          {navLinks.map((link, i) => (
-            <li key={link.key}>
+          {NAV_LINKS.map((link, i) => (
+            <li key={link.label}>
               <a
                 href={link.href}
                 className={i === 0 ? 'active' : ''}
                 onClick={() => setOpen(false)}
               >
-                {t[link.key]}
+                {link.label}
               </a>
             </li>
           ))}
-          <li>
-            <a
-              href="https://wa.me/94761234567"
-              target="_blank"
-              rel="noreferrer"
-              className="navbar-cta"
-            >
-              <FaWhatsapp size={16} />
-              {t.nav_whatsapp}
-            </a>
-          </li>
         </ul>
 
-        {/* Right side controls */}
+        {/* Right */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <LanguageSwitcher />
+          <a href="#contact" className="navbar-apply-btn" id="navbar-apply-btn">
+            Apply Now →
+          </a>
           <button
             className="hamburger"
             onClick={() => setOpen(!open)}
