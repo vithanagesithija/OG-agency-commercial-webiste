@@ -1,18 +1,20 @@
 export default function Hero() {
   return (
     <section className="hero" id="home">
-      {/* Full-width background image spanning corner to corner */}
+      {/* Full-width background image */}
       <img
-        src="/hero_banner_wide.png"
-        alt="Sri Lankan professional ready for employment in Japan - OG Agency"
+        src="/hero_banner_main.png"
+        alt="Sri Lankan professional standing in front of Mount Fuji and Tokyo skyline - OG Agency"
         className="hero-bg-img"
       />
 
-      {/* Gradient scrim for text readability over skyline */}
+      {/* White-to-transparent scrim — left side clean, right shows image */}
       <div className="hero-scrim" />
 
-      {/* Text overlay - left side */}
+      {/* Content wrapper */}
       <div className="hero-overlay-container">
+
+        {/* Main content */}
         <div className="hero-overlay-content">
           <div className="hero-breadcrumb">
             <span className="hero-breadcrumb-label">Sri Lanka</span>
@@ -26,7 +28,7 @@ export default function Hero() {
           </h1>
 
           <p className="hero-subtitle">
-            OG Agency supports Sri Lankan candidates through training, job preparation,
+            OG Agency supports Sri Lankan candidates through training, preparation,
             documentation and employment opportunities in Japan under TITP and SSW pathways.
           </p>
 
@@ -39,8 +41,8 @@ export default function Hero() {
             </a>
           </div>
         </div>
+
       </div>
     </section>
   );
 }
-

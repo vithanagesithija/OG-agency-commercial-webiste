@@ -1,4 +1,5 @@
 import './index.css';
+import { LanguageProvider } from './context/LanguageContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import JobOpportunities from './components/JobOpportunities';
@@ -14,7 +15,7 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <>
+    <LanguageProvider>
       <Navbar />
       <main>
         <Hero />
@@ -29,7 +30,7 @@ function App() {
       </main>
       <CtaBanner />
       <Footer />
-    </>
+    </LanguageProvider>
   );
 }
 

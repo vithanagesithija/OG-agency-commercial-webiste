@@ -1,15 +1,12 @@
 import { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const NAV_LINKS = [
-  { label: 'Home', href: '#home' },
-  { label: 'About Us', href: '#about' },
-  { label: 'TITP', href: '#pathways' },
-  { label: 'SSW', href: '#pathways' },
+  { label: 'Home',      href: '#home' },
+  { label: 'About Us',  href: '#about' },
   { label: 'Vacancies', href: '#vacancies' },
-  { label: 'Training', href: '#training' },
-  { label: 'Journey', href: '#process' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Contact',   href: '#contact' },
 ];
 
 export default function Navbar() {
@@ -18,13 +15,14 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-inner">
-        {/* Logo */}
-        <a href="#home" className="navbar-logo">
-          <div className="navbar-logo-icon">OG</div>
-          <div className="navbar-logo-text">
-            <span className="logo-main">OG AGENCY</span>
-            <span className="logo-sub">Sri Lanka → Japan</span>
-          </div>
+
+        {/* Logo — uploaded OG Agency logo */}
+        <a href="#home" className="navbar-logo" id="navbar-logo-link">
+          <img
+            src="/og_logo_new.png"
+            alt="OG Agency Logo"
+            className="navbar-logo-img"
+          />
         </a>
 
         {/* Nav Links */}
@@ -42,8 +40,9 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Right */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        {/* Right: Language + Apply Now + Hamburger */}
+        <div className="navbar-right">
+          <LanguageSwitcher />
           <a href="#contact" className="navbar-apply-btn" id="navbar-apply-btn">
             Apply Now →
           </a>
@@ -56,6 +55,7 @@ export default function Navbar() {
             {open ? <FaTimes /> : <FaBars />}
           </button>
         </div>
+
       </div>
     </nav>
   );
