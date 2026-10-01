@@ -1,0 +1,9 @@
+services:
+  - type: static
+    name: og-agency-commercial-webiste
+    env: node
+    buildCommand: >
+      npm ci && npm run build
+    staticPublishPath: dist
+    # If you use a private repo, add a `repo` field with the clone URL and
+    # a `plan` (free, starter, …) as you prefer.

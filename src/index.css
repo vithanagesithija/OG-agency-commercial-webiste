@@ -98,7 +98,7 @@ img {
   top: 0;
   z-index: 1000;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
-  height: 72px;          /* proportional to 56px logo */
+  height: 80px;          /* header height — logo fills 95% */
 }
 
 .navbar-inner {
@@ -122,11 +122,10 @@ img {
 }
 
 .navbar-logo-img {
-  height: 56px;                  /* balanced size — visible but not overpowering */
+  height: 76px;                  /* 95% of 80px navbar height */
   width: auto;
   object-fit: contain;
   display: block;
-  mix-blend-mode: multiply;      /* dissolves the white/grey checkerboard background */
   transition: var(--transition);
 }
 
@@ -1755,5 +1754,1305 @@ img {
 
   .process-steps {
     grid-template-columns: 1fr;
+  }
+}
+
+/* =====================================================================
+   VISA DETAIL PAGES — TITP & SSW
+   ===================================================================== */
+
+/* Pathways updated card layout */
+.pathways-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 40px;
+}
+
+.pathways-subtitle {
+  margin-top: 12px;
+}
+
+.pathways-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.pathway-card-clickable {
+  cursor: pointer;
+  transition: transform 0.22s cubic-bezier(0.4,0,0.2,1), box-shadow 0.22s cubic-bezier(0.4,0,0.2,1);
+}
+
+.pathway-card-clickable:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.pathway-card-clickable:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
+/* ---- Breadcrumb ---- */
+.breadcrumb-bar {
+  background: var(--gray-50);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 12px 0;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: 0.8rem;
+  color: var(--gray-500);
+}
+
+.breadcrumb a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-sep {
+  color: var(--gray-300);
+}
+
+.breadcrumb-current {
+  color: var(--gray-700);
+  font-weight: 600;
+}
+
+/* ---- Visa Hero ---- */
+.visa-hero {
+  padding: 60px 0 50px;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.titp-hero {
+  background: linear-gradient(135deg, #f0f6ff 0%, #fafcff 60%, #eef4ff 100%);
+}
+
+.ssw-hero {
+  background: linear-gradient(135deg, #f0fdf7 0%, #fafffe 60%, #eefdf6 100%);
+}
+
+.visa-hero-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.visa-hero-content {
+  flex: 1;
+  max-width: 600px;
+}
+
+.visa-hero-flag {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  animation: flagPop 0.6s ease both;
+}
+
+@keyframes flagPop {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+.visa-hero-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 30px;
+  margin-bottom: 14px;
+}
+
+.titp-badge {
+  background: #dbeafe;
+  color: var(--primary);
+}
+
+.ssw-badge {
+  background: #d1fae5;
+  color: #059669;
+}
+
+.visa-hero-title {
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--gray-900);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.visa-hero-jp {
+  font-size: 1.1rem;
+  color: var(--gray-400);
+  margin-bottom: 16px;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+.visa-hero-desc {
+  font-size: 1rem;
+  color: var(--gray-600);
+  line-height: 1.7;
+  margin-bottom: 28px;
+  max-width: 520px;
+}
+
+.visa-hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Stat cards in hero */
+.visa-hero-stat-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.visa-stat-card {
+  background: white;
+  border-radius: var(--radius-md);
+  padding: 16px 24px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--gray-100);
+  text-align: center;
+  min-width: 130px;
+  transition: var(--transition);
+}
+
+.visa-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.visa-stat-num {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.ssw-stat-num {
+  color: #059669;
+}
+
+.visa-stat-label {
+  font-size: 0.72rem;
+  color: var(--gray-500);
+  font-weight: 500;
+}
+
+/* ---- Buttons ---- */
+.btn-visa-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--primary);
+  color: white;
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 14px rgba(26, 93, 200, 0.3);
+}
+
+.btn-visa-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(26, 93, 200, 0.4);
+}
+
+.btn-visa-primary.ssw-primary,
+.ssw-final-btn {
+  background: #059669;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.3);
+}
+
+.btn-visa-primary.ssw-primary:hover,
+.ssw-final-btn:hover {
+  background: #047857;
+  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4);
+}
+
+.btn-visa-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: white;
+  color: var(--gray-700);
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1.5px solid var(--gray-200);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-visa-secondary:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-50);
+}
+
+.btn-visa-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: white;
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid rgba(255,255,255,0.5);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-visa-outline:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: white;
+}
+
+.btn-visa-primary.large,
+.btn-visa-outline.large {
+  padding: 14px 32px;
+  font-size: 0.95rem;
+}
+
+/* ---- Visa Sections ---- */
+.visa-section {
+  padding: 72px 0;
+}
+
+.visa-section-alt {
+  background: var(--gray-50);
+}
+
+.visa-section-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.visa-section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.titp-label { color: var(--primary); }
+.ssw-label  { color: #059669; }
+
+.visa-section-title {
+  font-family: var(--font-heading);
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--gray-900);
+  margin-bottom: 10px;
+}
+
+.visa-section-desc {
+  font-size: 0.95rem;
+  color: var(--gray-500);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ---- Overview Grid ---- */
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.overview-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: white;
+  border-radius: var(--radius-md);
+  padding: 20px;
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.overview-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.overview-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.overview-card-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.overview-card-value {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--gray-800);
+  line-height: 1.5;
+}
+
+/* ---- Stages Timeline ---- */
+.stages-timeline {
+  display: flex;
+  gap: 0;
+  align-items: flex-start;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.stage-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 160px;
+}
+
+.stage-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.stage-dot {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: white;
+  flex-shrink: 0;
+  z-index: 1;
+  position: relative;
+}
+
+.titp-dot { background: linear-gradient(135deg, var(--primary), var(--primary-light)); }
+
+.stage-line {
+  height: 3px;
+  width: 100%;
+  margin-top: -26px;
+  position: relative;
+}
+
+.titp-line { background: linear-gradient(90deg, var(--primary-100), var(--primary-100)); }
+
+.stage-content {
+  text-align: center;
+  padding: 0 8px;
+}
+
+.stage-duration {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  padding: 3px 10px;
+  border-radius: 30px;
+  display: inline-block;
+}
+
+.titp-duration { background: var(--primary-50); color: var(--primary); }
+
+.stage-title {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 6px;
+}
+
+.stage-desc {
+  font-size: 0.76rem;
+  color: var(--gray-500);
+  line-height: 1.55;
+}
+
+/* ---- Language Requirement Card ---- */
+.lang-req-card {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  border-radius: var(--radius-xl);
+  padding: 48px;
+  border: 1px solid var(--gray-200);
+}
+
+.titp-lang-card { background: linear-gradient(135deg, #f0f6ff, #fafcff); }
+.ssw-lang-card  { background: linear-gradient(135deg, #f0fdf7, #fafffe); }
+
+.lang-req-left {
+  flex: 1;
+}
+
+.lang-req-title {
+  font-family: var(--font-heading);
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--gray-900);
+  margin: 8px 0 14px;
+}
+
+.lang-req-desc {
+  font-size: 0.92rem;
+  color: var(--gray-600);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.lang-req-note {
+  font-size: 0.8rem;
+  color: var(--gray-500);
+  background: white;
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  border: 1px solid var(--gray-200);
+  line-height: 1.5;
+}
+
+.lang-req-right {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.jlpt-badge-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.jlpt-badge-group.centered {
+  justify-content: center;
+}
+
+.jlpt-badge {
+  border-radius: var(--radius-md);
+  padding: 14px 20px;
+  text-align: center;
+  min-width: 80px;
+}
+
+.titp-jlpt {
+  background: var(--primary);
+  color: white;
+}
+
+.ssw-jlpt {
+  background: #059669;
+  color: white;
+}
+
+.jlpt-top {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: 4px;
+}
+
+.jlpt-level {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.jlpt-level.small {
+  font-size: 1.2rem;
+}
+
+.jlpt-or {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--gray-400);
+}
+
+.lang-req-caption {
+  font-size: 0.72rem;
+  color: var(--gray-400);
+  margin-top: 8px;
+}
+
+/* ---- Support Grid ---- */
+.support-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.support-card {
+  background: white;
+  border-radius: var(--radius-md);
+  padding: 24px;
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.support-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.support-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 14px;
+}
+
+.titp-icon-bg { background: var(--primary-50); }
+.ssw-icon-bg  { background: #d1fae5; }
+
+.support-card-title {
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 8px;
+}
+
+.support-card-desc {
+  font-size: 0.8rem;
+  color: var(--gray-500);
+  line-height: 1.6;
+}
+
+/* ---- Who is it for ---- */
+.who-for-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 48px;
+  align-items: start;
+}
+
+.who-for-text .visa-section-title {
+  text-align: left;
+  margin-bottom: 14px;
+}
+
+.who-for-text .visa-section-desc {
+  text-align: left;
+  margin: 0 0 20px;
+}
+
+.who-for-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.who-for-list li {
+  font-size: 0.88rem;
+  color: var(--gray-700);
+  padding: 10px 16px;
+  background: var(--gray-50);
+  border-radius: var(--radius);
+  border-left: 3px solid var(--primary);
+  line-height: 1.5;
+}
+
+.ssw-who-list li {
+  border-left-color: #059669;
+}
+
+.who-for-card {
+  border-radius: var(--radius-xl);
+  padding: 32px 28px;
+  text-align: center;
+  border: 1px solid var(--gray-200);
+}
+
+.titp-who-card {
+  background: linear-gradient(135deg, #f0f6ff, #fafcff);
+}
+
+.ssw-who-card {
+  background: linear-gradient(135deg, #f0fdf7, #fafffe);
+}
+
+.who-for-card-icon {
+  font-size: 2.4rem;
+  margin-bottom: 14px;
+}
+
+.who-for-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 8px;
+}
+
+.who-for-card p {
+  font-size: 0.82rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* ---- Process Grid ---- */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.process-step {
+  background: white;
+  border-radius: var(--radius-md);
+  padding: 22px 18px;
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  position: relative;
+}
+
+.process-step:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.process-step-num {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 12px;
+}
+
+.titp-step-num { background: var(--primary); }
+.ssw-step-num  { background: #059669; }
+
+.process-step-title {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 6px;
+}
+
+.process-step-desc {
+  font-size: 0.76rem;
+  color: var(--gray-500);
+  line-height: 1.55;
+}
+
+/* ---- Org Support ---- */
+.org-support-layout {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.org-card {
+  flex: 1;
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  border: 1px solid var(--gray-200);
+  text-align: center;
+  transition: var(--transition);
+}
+
+.ssw-org-card {
+  background: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.ssw-org-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.org-card-icon {
+  font-size: 2rem;
+  margin-bottom: 14px;
+}
+
+.org-card-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 10px;
+}
+
+.org-card-desc {
+  font-size: 0.82rem;
+  color: var(--gray-500);
+  line-height: 1.65;
+}
+
+.org-connector {
+  font-size: 1.4rem;
+  color: var(--gray-300);
+  flex-shrink: 0;
+  font-weight: 300;
+}
+
+/* ---- Requirements Two-col ---- */
+.req-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.req-big-card {
+  border-radius: var(--radius-xl);
+  padding: 36px 28px;
+  text-align: center;
+  border: 1px solid var(--gray-200);
+  transition: var(--transition);
+}
+
+.ssw-req-card {
+  background: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.ssw-req-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.req-big-icon {
+  font-size: 2.4rem;
+  margin-bottom: 14px;
+}
+
+.req-big-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 20px;
+}
+
+.skills-badge {
+  margin: 0 auto 20px;
+  display: inline-block;
+}
+
+.skills-badge-label {
+  background: #d1fae5;
+  color: #059669;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 8px 20px;
+  border-radius: 30px;
+  letter-spacing: 0.3px;
+}
+
+.req-big-note {
+  font-size: 0.78rem;
+  color: var(--gray-500);
+  line-height: 1.6;
+  background: var(--gray-50);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  border: 1px solid var(--gray-200);
+  text-align: left;
+}
+
+/* ---- Important Box ---- */
+.important-box {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  border: 1.5px solid #bee3f8;
+  background: #ebf8ff;
+}
+
+.titp-important-box {
+  border-color: var(--primary-100);
+  background: var(--primary-50);
+}
+
+.ssw-important-box {
+  border-color: #bbf7d0;
+  background: #f0fdf7;
+}
+
+.important-box-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.important-box-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 10px;
+}
+
+.important-box-desc {
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.important-box-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.important-box-list li {
+  font-size: 0.8rem;
+  color: var(--gray-600);
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.important-box-list li::before {
+  content: '•';
+  position: absolute;
+  left: 4px;
+  color: var(--gray-400);
+}
+
+/* ---- Final CTA ---- */
+.visa-final-cta {
+  padding: 80px 0;
+}
+
+.titp-final-cta {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+}
+
+.ssw-final-cta {
+  background: linear-gradient(135deg, #047857 0%, #059669 100%);
+}
+
+.visa-final-cta-inner {
+  text-align: center;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.visa-final-cta-flag {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.visa-final-cta-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+
+.visa-final-cta-desc {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.visa-final-cta-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* =====================================================================
+   RESPONSIVE — VISA DETAIL PAGES
+   ===================================================================== */
+@media (max-width: 1024px) {
+  .overview-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .visa-hero-title {
+    font-size: 1.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .pathways-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .visa-hero-inner {
+    flex-direction: column;
+  }
+
+  .visa-hero-stat-group {
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .visa-stat-card {
+    flex: 1;
+    min-width: 90px;
+  }
+
+  .visa-hero-title {
+    font-size: 1.6rem;
+  }
+
+  .visa-section-title {
+    font-size: 1.5rem;
+  }
+
+  .overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stages-timeline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .stage-item {
+    flex-direction: row;
+    align-items: flex-start;
+    min-width: unset;
+  }
+
+  .stage-connector {
+    flex-direction: column;
+    align-items: center;
+    width: 60px;
+    flex-shrink: 0;
+    margin-bottom: 0;
+    margin-right: 16px;
+  }
+
+  .stage-line {
+    width: 3px;
+    height: 60px;
+    margin-top: 0;
+    margin-left: 0;
+    background: linear-gradient(180deg, var(--primary-100), var(--primary-100)) !important;
+  }
+
+  .stage-content {
+    text-align: left;
+    padding: 0 0 24px;
+    flex: 1;
+  }
+
+  .lang-req-card {
+    flex-direction: column;
+    padding: 28px 24px;
+    gap: 28px;
+  }
+
+  .who-for-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .support-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .process-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .req-two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .org-support-layout {
+    flex-direction: column;
+  }
+
+  .org-connector {
+    transform: rotate(90deg);
+  }
+
+  .visa-final-cta-title {
+    font-size: 1.5rem;
+  }
+
+  .visa-final-cta-btns {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .support-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .visa-hero-stat-group {
+    flex-direction: column;
+  }
+
+  .jlpt-badge-group {
+    flex-wrap: wrap;
+  }
+}
+
+/* =====================================================================
+   PATHWAY CARD V2 — with image + big highlighted TITP / SSW word
+   ===================================================================== */
+
+.pathway-card-v2 {
+  background: white;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--gray-100);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.26s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.26s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pathway-card-v2:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+}
+
+.pathway-card-v2:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
+/* ── Image wrapper with overlay ── */
+.pathway-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.pathway-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pathway-card-v2:hover .pathway-card-img {
+  transform: scale(1.06);
+}
+
+/* Dark gradient overlay over the image */
+.pathway-img-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 20px 22px;
+  background: linear-gradient(
+    to top,
+    rgba(10, 20, 50, 0.82) 0%,
+    rgba(10, 20, 50, 0.35) 55%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.ssw-img-label {
+  background: linear-gradient(
+    to top,
+    rgba(2, 44, 28, 0.82) 0%,
+    rgba(2, 44, 28, 0.35) 55%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+/* ── The big TITP / SSW word ── */
+.pathway-big-word {
+  font-family: var(--font-heading);
+  font-size: 3.6rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+  line-height: 1;
+  color: white;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  display: block;
+  /* Subtle glowing underline */
+  border-bottom: 4px solid transparent;
+  padding-bottom: 4px;
+  transition: letter-spacing 0.3s ease;
+}
+
+.titp-img-label .pathway-big-word {
+  border-bottom-color: #60a5fa;
+  text-shadow: 0 0 30px rgba(96, 165, 250, 0.5), 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.ssw-img-label .pathway-big-word {
+  border-bottom-color: #34d399;
+  text-shadow: 0 0 30px rgba(52, 211, 153, 0.5), 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.pathway-card-v2:hover .pathway-big-word {
+  letter-spacing: 6px;
+}
+
+/* Japanese kanji sub-label */
+.pathway-big-sub {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 3px;
+  margin-top: 4px;
+}
+
+/* ── Card body ── */
+.pathway-card-body-v2 {
+  padding: 22px 24px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.pathway-card-meta-row-v2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pathway-card-title-v2 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--gray-900);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.pathway-card-desc-v2 {
+  font-size: 0.83rem;
+  color: var(--gray-500);
+  line-height: 1.65;
+  flex: 1;
+}
+
+.btn-pathway-v2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 22px;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: var(--transition);
+  border: none;
+  cursor: pointer;
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .pathway-img-wrap {
+    height: 180px;
+  }
+
+  .pathway-big-word {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pathway-img-wrap {
+    height: 160px;
+  }
+
+  .pathway-big-word {
+    font-size: 2.2rem;
   }
 }
