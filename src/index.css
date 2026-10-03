@@ -953,116 +953,260 @@ img {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 20px 16px;
+  padding: 28px 20px 24px;
   background: var(--gray-50);
   border-radius: var(--radius-md);
   border: 1px solid var(--gray-200);
   cursor: pointer;
-  transition: var(--transition);
+  transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
   text-decoration: none;
   color: var(--gray-700);
+  gap: 14px;
 }
 
 .sector-card:hover {
-  background: var(--primary-50);
-  border-color: var(--primary-100);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow);
-  color: var(--primary);
+  background: var(--sector-bg, var(--primary-50));
+  border-color: var(--sector-color, var(--primary));
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 32px -4px rgba(0,0,0,0.13);
+  color: var(--sector-color, var(--primary));
 }
 
 .sector-icon {
-  width: 50px;
-  height: 50px;
+  width: 110px;
+  height: 110px;
   background: white;
-  border-radius: var(--radius);
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
-  margin-bottom: 10px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  padding: 14px;
+}
+
+.sector-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.sector-card:hover .sector-icon {
+  background: var(--sector-bg, #e8f0fe);
+  transform: scale(1.1) rotate(-4deg);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+}
+
+.sector-name {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+/* =====================
+   QUALIFICATIONS / ELIGIBILITY
+   ===================== */
+.qualifications {
+  padding: 80px 0;
+  background: var(--gray-50);
+}
+
+.qualifications-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* LEFT */
+.qualifications-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.qualifications-heading {
+  margin-top: 6px;
+  margin-bottom: 14px;
+}
+
+.qualifications-intro {
+  font-size: 0.95rem;
+  color: var(--gray-600);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.qualifications-sub-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+/* Qualification cards */
+.qual-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.qual-card {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
 }
 
-.sector-card:hover .sector-icon {
-  background: var(--primary);
-  transform: scale(1.1);
+.qual-card:hover {
+  border-color: var(--primary-100);
+  box-shadow: var(--shadow-md);
+  transform: translateX(4px);
 }
 
-.sector-name {
-  font-size: 0.8rem;
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-/* =====================
-   TRAINING
-   ===================== */
-.training {
-  padding: 60px 0;
-  background: var(--gray-50);
-}
-
-.training-inner {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: 50px;
-  align-items: center;
-  margin-top: 32px;
-}
-
-.training-features {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 28px;
-}
-
-.training-feature {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-}
-
-.training-feature-icon {
-  width: 40px;
-  height: 40px;
+.qual-card-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  background: var(--primary-50);
   border-radius: var(--radius);
-  background: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
-  box-shadow: var(--shadow-sm);
-  flex-shrink: 0;
-  border: 1px solid var(--gray-100);
+  padding: 8px;
+  border: 1px solid var(--primary-100);
 }
 
-.training-feature-name {
-  font-size: 0.82rem;
+.qual-card-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.qual-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.qual-card-title {
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--gray-800);
+  font-family: var(--font-heading);
+}
+
+.qual-card-desc {
+  font-size: 0.8rem;
+  color: var(--gray-500);
+  line-height: 1.5;
+}
+
+/* Highlighted eligibility callout */
+.qual-highlight {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border: 1.5px solid var(--primary-100);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-bottom: 28px;
+}
+
+.qual-highlight-icon {
+  width: 28px;
+  height: 28px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  line-height: 1;
+  padding-top: 1px;
+}
+
+.qual-highlight-heading {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--primary-dark);
   margin-bottom: 3px;
 }
 
-.training-feature-desc {
-  font-size: 0.72rem;
-  color: var(--gray-500);
-  line-height: 1.4;
+.qual-highlight-text {
+  font-size: 0.8rem;
+  color: var(--gray-600);
 }
 
-.training-img-wrap {
+.qual-cta {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* RIGHT – image wrapper */
+.qualifications-img-wrap {
   position: relative;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
+  line-height: 0;
 }
 
-.training-img {
+.qualifications-img {
   width: 100%;
-  height: 340px;
+  height: 420px;
   object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* Floating badge */
+.qualifications-badge {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  border-radius: var(--radius-md);
+  padding: 12px 18px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--gray-100);
+  min-width: 220px;
+}
+
+.qualifications-badge-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.qualifications-badge-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--gray-800);
+}
+
+.qualifications-badge-sub {
+  font-size: 0.72rem;
+  color: var(--primary);
+  font-weight: 600;
 }
 
 /* =====================
@@ -1627,7 +1771,17 @@ img {
   .footer-grid {
     grid-template-columns: 1fr 1fr;
   }
+
+  .qualifications-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .qualifications-img {
+    height: 340px;
+  }
 }
+
 
 @media (max-width: 768px) {
   :root {
@@ -1662,8 +1816,18 @@ img {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .training-inner {
+  .qualifications-inner {
     grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .qualifications-img {
+    height: 280px;
+  }
+
+  .qual-cta {
+    align-self: stretch;
+    justify-content: center;
   }
 
   .career-banner-inner {
