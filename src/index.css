@@ -1838,11 +1838,17 @@ img {
 }
 
 .titp-hero {
-  background: linear-gradient(135deg, #f0f6ff 0%, #fafcff 60%, #eef4ff 100%);
+  background:
+    linear-gradient(135deg, rgba(240, 246, 255, 0.82) 0%, rgba(230, 242, 255, 0.75) 50%, rgba(220, 235, 255, 0.80) 100%),
+    url('/src/assets/titp_hero_bg.jpg') center center / cover no-repeat;
+  position: relative;
 }
 
 .ssw-hero {
-  background: linear-gradient(135deg, #f0fdf7 0%, #fafffe 60%, #eefdf6 100%);
+  background:
+    linear-gradient(135deg, rgba(240, 253, 247, 0.80) 0%, rgba(230, 252, 244, 0.73) 50%, rgba(220, 250, 238, 0.80) 100%),
+    url('/src/assets/ssw_hero_bg.jpg') center center / cover no-repeat;
+  position: relative;
 }
 
 .visa-hero-inner {
@@ -1870,13 +1876,13 @@ img {
 
 .visa-hero-badge {
   display: inline-block;
-  font-size: 0.72rem;
+  font-size: 1rem;
   font-weight: 800;
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  padding: 4px 14px;
+  padding: 6px 20px;
   border-radius: 30px;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .titp-badge {
@@ -1891,10 +1897,10 @@ img {
 
 .visa-hero-title {
   font-family: var(--font-heading);
-  font-size: 2.4rem;
+  font-size: 3.2rem;
   font-weight: 800;
   color: var(--gray-900);
-  line-height: 1.2;
+  line-height: 1.15;
   margin-bottom: 8px;
 }
 
@@ -3054,5 +3060,128 @@ img {
 
   .pathway-big-word {
     font-size: 2.2rem;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   SSW Floating Worker Popups
+══════════════════════════════════════════════ */
+
+/* Sections that contain floating workers need position:relative */
+.ssw-float-section {
+  position: relative;
+  overflow: visible;
+}
+
+/* Base floating card */
+.ssw-float-worker {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  pointer-events: none;
+  transition: opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Left side — slides in from left */
+.ssw-float-left {
+  left: -10px;
+  opacity: 0;
+  transform: translateY(-50%) translateX(-120px) scale(0.85);
+}
+
+/* Right side — slides in from right */
+.ssw-float-right {
+  right: -10px;
+  opacity: 0;
+  transform: translateY(-50%) translateX(120px) scale(0.85);
+}
+
+/* Visible state — triggered by IntersectionObserver */
+.ssw-float-worker.ssw-float-visible.ssw-float-left {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0) scale(1);
+}
+
+.ssw-float-worker.ssw-float-visible.ssw-float-right {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0) scale(1);
+}
+
+/* Image wrapper — rounded card with shadow + green glow */
+.ssw-float-img-wrap {
+  width: 140px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow:
+    0 20px 60px rgba(5, 150, 105, 0.25),
+    0 8px 24px rgba(0, 0, 0, 0.15),
+    0 0 0 3px rgba(16, 185, 129, 0.3);
+  background: #fff;
+  position: relative;
+  transition: box-shadow 0.3s ease;
+}
+
+.ssw-float-img-wrap:hover {
+  box-shadow:
+    0 28px 70px rgba(5, 150, 105, 0.35),
+    0 12px 32px rgba(0, 0, 0, 0.18),
+    0 0 0 4px rgba(16, 185, 129, 0.5);
+}
+
+/* Portrait image */
+.ssw-float-img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* Job label badge */
+.ssw-float-label {
+  background: linear-gradient(135deg, #059669, #10b981);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-align: center;
+  padding: 7px 10px;
+  line-height: 1.2;
+}
+
+/* Decorative dot accent on left side cards */
+.ssw-float-left .ssw-float-img-wrap::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10b981, #34d399);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+  z-index: 1;
+}
+
+/* Decorative dot accent on right side cards */
+.ssw-float-right .ssw-float-img-wrap::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10b981, #34d399);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+  z-index: 1;
+}
+
+/* Hide floats on smaller screens where they'd overlap content */
+@media (max-width: 1200px) {
+  .ssw-float-worker {
+    display: none;
   }
 }

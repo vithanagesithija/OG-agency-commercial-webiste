@@ -1,5 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+
+// Worker images in public/workers/ folder
+const WORKERS = {
+  nurse:        '/workers/worker_nurse.jpg',
+  construction: '/workers/worker_construction.jpg',
+  chef:         '/workers/worker_chef.jpg',
+};
 
 const sswProcess = [
   { num: '01', title: 'Choose Industry / Field', desc: 'Identify the industry and field in Japan that matches your skills and experience.' },
@@ -21,13 +28,48 @@ const supportCards = [
   { icon: '🤝', title: 'Registered Support Organization', desc: 'A Registered Support Organization may provide additional support and assistance.' },
 ];
 
+// Individual floating popup component — observes itself
+function FloatingWorker({ img, label, side }) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          obs.disconnect(); // fire once
+        }
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={`ssw-float-worker ssw-float-${side}${visible ? ' ssw-float-visible' : ''}`}
+      aria-hidden="true"
+    >
+      <div className="ssw-float-img-wrap">
+        <img src={img} alt={label} className="ssw-float-img" loading="lazy" />
+        <div className="ssw-float-label">{label}</div>
+      </div>
+    </div>
+  );
+}
+
 export default function SSWPage() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   return (
-    <div className="visa-detail-page">
+    <div className="visa-detail-page ssw-with-floats">
       {/* Breadcrumb */}
       <div className="breadcrumb-bar">
         <div className="container">
@@ -48,7 +90,6 @@ export default function SSWPage() {
         <div className="container">
           <div className="visa-hero-inner">
             <div className="visa-hero-content">
-              <div className="visa-hero-flag">🇯🇵</div>
               <div className="visa-hero-badge ssw-badge">SSW</div>
               <h1 className="visa-hero-title">Specified Skilled Worker</h1>
               <p className="visa-hero-jp">特定技能</p>
@@ -84,7 +125,9 @@ export default function SSWPage() {
       </section>
 
       {/* Section 1 — Overview */}
-      <section className="visa-section">
+      <section className="visa-section ssw-float-section" id="ssw-section-overview">
+        {/* LEFT floating worker — Nurse */}
+        <FloatingWorker img={WORKERS.nurse} label="Healthcare Worker" side="left" />
         <div className="container">
           <div className="visa-section-header">
             <div className="visa-section-label ssw-label">Program Overview</div>
@@ -112,7 +155,9 @@ export default function SSWPage() {
       </section>
 
       {/* Section 2 — Requirements */}
-      <section className="visa-section visa-section-alt">
+      <section className="visa-section visa-section-alt ssw-float-section" id="ssw-section-requirements">
+        {/* RIGHT floating worker — Construction */}
+        <FloatingWorker img={WORKERS.construction} label="Construction Worker" side="right" />
         <div className="container">
           <div className="visa-section-header">
             <div className="visa-section-label ssw-label">Entry Requirements</div>
@@ -185,7 +230,9 @@ export default function SSWPage() {
       </section>
 
       {/* Section 4 — Process */}
-      <section className="visa-section visa-section-alt">
+      <section className="visa-section visa-section-alt ssw-float-section" id="ssw-section-process">
+        {/* LEFT floating worker — Chef */}
+        <FloatingWorker img={WORKERS.chef} label="Food Service" side="left" />
         <div className="container">
           <div className="visa-section-header">
             <div className="visa-section-label ssw-label">Step by Step</div>
@@ -261,7 +308,9 @@ export default function SSWPage() {
       </section>
 
       {/* Section 7 — Support Before & After */}
-      <section className="visa-section">
+      <section className="visa-section ssw-float-section" id="ssw-section-support">
+        {/* RIGHT floating worker — Nurse (caregiver role) */}
+        <FloatingWorker img={WORKERS.nurse} label="Care & Support Worker" side="right" />
         <div className="container">
           <div className="visa-section-header">
             <div className="visa-section-label ssw-label">Full-journey Support</div>

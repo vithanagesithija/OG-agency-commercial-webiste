@@ -81,7 +81,6 @@ export default function TITPPage() {
         <div className="container">
           <div className="visa-hero-inner">
             <div className="visa-hero-content">
-              <div className="visa-hero-flag">🇯🇵</div>
               <div className="visa-hero-badge titp-badge">TITP</div>
               <h1 className="visa-hero-title">Technical Intern Training Program</h1>
               <p className="visa-hero-jp">技能実習</p>
