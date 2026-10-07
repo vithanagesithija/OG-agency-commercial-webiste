@@ -1,4 +1,8 @@
+import { useLang } from '../context/LanguageContext';
+
 export default function Hero() {
+  const { t } = useLang();
+
   return (
     <section className="hero" id="home">
       {/* Full-width background image — Sri Lankan employees in Tokyo */}
@@ -17,17 +21,16 @@ export default function Hero() {
         {/* Main content */}
         <div className="hero-overlay-content">
           <div className="hero-breadcrumb">
-            <span className="hero-breadcrumb-label">Work in Japan</span>
+            <span className="hero-breadcrumb-label">{t.hero_breadcrumb}</span>
           </div>
 
           <h1 className="hero-title">
-            Build Your Career{" "}
-            <span className="hero-title-accent">in Japan</span>
+            {t.hero_title}{" "}
+            <span className="hero-title-accent">{t.hero_title_accent}</span>
           </h1>
 
           <p className="hero-subtitle">
-            Build valuable experience, grow your skills and build a brighter
-            future in one of the world&apos;s most advanced economies.
+            {t.hero_subtitle}
           </p>
 
           <div className="hero-actions">
@@ -44,13 +47,13 @@ export default function Hero() {
                 }
               }}
             >
-              Explore Employment Opportunities
+              {t.hero_cta_primary}
               <span className="btn-arrow">→</span>
             </a>
 
             {/* Secondary CTA */}
             <a href="#pathways" className="btn-hero-secondary" id="hero-start-journey-btn">
-              Our Process →
+              {t.hero_cta_secondary} →
             </a>
           </div>
         </div>

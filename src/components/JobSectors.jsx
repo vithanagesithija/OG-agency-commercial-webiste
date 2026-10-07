@@ -1,19 +1,10 @@
-﻿import { useEffect, useRef, useState } from "react";
-
-const SECTORS = [
-  { id: "housing",      num: "01", name: "Housing / Construction",  col: 0, row: 0, highlight: false },
-  { id: "construction", num: "02", name: "Construction",            col: 1, row: 0, highlight: false },
-  { id: "agriculture",  num: "03", name: "Agriculture",             col: 2, row: 0, highlight: false },
-  { id: "auto",         num: "04", name: "Automobile Maintenance",  col: 3, row: 0, highlight: true  },
-  { id: "food",         num: "05", name: "Food Manufacturing",      col: 0, row: 1, highlight: false },
-  { id: "cleaning",     num: "06", name: "Cleaning",                col: 1, row: 1, highlight: false },
-  { id: "transport",    num: "07", name: "Road Transport",          col: 2, row: 1, highlight: false },
-  { id: "other",        num: "08", name: "Other Skilled Areas",     col: 3, row: 1, highlight: false },
-];
+import { useEffect, useRef, useState } from "react";
+import { useLang } from "../context/LanguageContext";
 
 export default function JobSectors() {
   const sectionRef = useRef(null);
   const [visible, setVisible] = useState(false);
+  const { t } = useLang();
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -25,6 +16,17 @@ export default function JobSectors() {
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
+
+  const SECTORS = [
+    { id: "housing",      num: "01", nameKey: "sector_housing",      col: 0, row: 0, highlight: false },
+    { id: "construction", num: "02", nameKey: "sector_construction",  col: 1, row: 0, highlight: false },
+    { id: "agriculture",  num: "03", nameKey: "sector_agriculture",   col: 2, row: 0, highlight: false },
+    { id: "auto",         num: "04", nameKey: "sector_auto",          col: 3, row: 0, highlight: true  },
+    { id: "food",         num: "05", nameKey: "sector_food",          col: 0, row: 1, highlight: false },
+    { id: "cleaning",     num: "06", nameKey: "sector_cleaning",      col: 1, row: 1, highlight: false },
+    { id: "transport",    num: "07", nameKey: "sector_transport",     col: 2, row: 1, highlight: false },
+    { id: "other",        num: "08", nameKey: "sector_other",         col: 3, row: 1, highlight: false },
+  ];
 
   const row1 = SECTORS.slice(0, 4);
   const row2 = SECTORS.slice(4, 8);
@@ -42,7 +44,7 @@ export default function JobSectors() {
                 id={"sector-" + sector.id}
                 className={"js-card" + (sector.highlight ? " js-card--featured" : "")}
                 style={{ "--delay": (rowIndex * 4 + i) * 0.07 + "s" }}
-                aria-label={"Explore " + sector.name + " jobs in Japan"}
+                aria-label={"Explore " + t[sector.nameKey] + " jobs in Japan"}
               >
                 <div className="js-illus-wrap">
                   <div
@@ -53,13 +55,13 @@ export default function JobSectors() {
                       backgroundPosition: xPct + "% " + yPct + "%",
                     }}
                     role="img"
-                    aria-label={sector.name}
+                    aria-label={t[sector.nameKey]}
                   />
                 </div>
                 <div className="js-body">
-                  <div className="js-name">{sector.name}</div>
+                  <div className="js-name">{t[sector.nameKey]}</div>
                   {sector.highlight && (
-                    <div className="js-badge">Key Sector</div>
+                    <div className="js-badge">{t.sector_key_badge}</div>
                   )}
                 </div>
               </a>
@@ -97,11 +99,10 @@ export default function JobSectors() {
 
       <div className="container">
         <div className="js-header">
-          <div className="section-label">Job Sectors</div>
-          <h2 className="section-title">Target Job Sectors in Japan</h2>
+          <div className="section-label">{t.sectors_label}</div>
+          <h2 className="section-title">{t.sectors_title}</h2>
           <p className="section-subtitle js-subtitle">
-            Connect with leading Japanese employers across eight key employment sectors.
-            Qualified candidates can explore opportunities that match their skills and experience.
+            {t.sectors_subtitle}
           </p>
         </div>
 

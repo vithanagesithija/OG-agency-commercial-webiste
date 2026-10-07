@@ -1,57 +1,58 @@
-const JOBS = [
-  {
-    id: 'construction',
-    img: '/job_construction.jpg',
-    flag: '🇯🇵',
-    type: 'TITP / SSW',
-    title: 'Construction Worker',
-    salary: '¥150,000 – ¥180,000 / month',
-    location: 'Tokyo, Japan',
-    deadline: 'Apply Before: 2025-08-30',
-  },
-  {
-    id: 'care',
-    img: '/job_care_worker.jpg',
-    flag: '🇯🇵',
-    type: 'SSW',
-    title: 'Care Worker',
-    salary: '¥160,000 – ¥190,000 / month',
-    location: 'Osaka, Japan',
-    deadline: 'Apply Before: 2025-09-05',
-  },
-  {
-    id: 'agriculture',
-    img: '/job_agriculture.jpg',
-    flag: '🇯🇵',
-    type: 'TITP / SSW',
-    title: 'Agriculture Worker',
-    salary: '¥140,000 – ¥170,000 / month',
-    location: 'Hokkaido, Japan',
-    deadline: 'Apply Before: 2025-09-08',
-  },
-  {
-    id: 'food',
-    img: '/job_food_manufacturing.jpg',
-    flag: '🇯🇵',
-    type: 'TITP / SSW',
-    title: 'Food Manufacturing',
-    salary: '¥145,000 – ¥175,000 / month',
-    location: 'Kanagawa, Japan',
-    deadline: 'Apply Before: 2025-08-30',
-  },
-];
+import { useLang } from '../context/LanguageContext';
 
 export default function JobOpportunities() {
+  const { t } = useLang();
+
+  // Job titles that should be looked up from translations when possible
+  const JOBS = [
+    {
+      id: 'construction',
+      img: '/job_construction.jpg',
+      flag: '🇯🇵',
+      type: 'TITP / SSW',
+      title: t.sector_construction,
+      salary: '¥150,000 – ¥180,000 / month',
+      location: 'Tokyo, Japan',
+    },
+    {
+      id: 'care',
+      img: '/job_care_worker.jpg',
+      flag: '🇯🇵',
+      type: 'SSW',
+      title: t.ssw_worker_care,
+      salary: '¥160,000 – ¥190,000 / month',
+      location: 'Osaka, Japan',
+    },
+    {
+      id: 'agriculture',
+      img: '/job_agriculture.jpg',
+      flag: '🇯🇵',
+      type: 'TITP / SSW',
+      title: t.sector_agriculture,
+      salary: '¥140,000 – ¥170,000 / month',
+      location: 'Hokkaido, Japan',
+    },
+    {
+      id: 'food',
+      img: '/job_food_manufacturing.jpg',
+      flag: '🇯🇵',
+      type: 'TITP / SSW',
+      title: t.sector_food,
+      salary: '¥145,000 – ¥175,000 / month',
+      location: 'Kanagawa, Japan',
+    },
+  ];
+
   return (
     <section className="job-opps" id="vacancies">
       <div className="container">
         <div className="job-opps-header">
           <div>
-            <div className="section-label">Latest Job Opportunities</div>
-            <h2 className="section-title">Latest Japan Job Opportunities</h2>
+            <div className="section-label">{t.vac_title}</div>
+            <h2 className="section-title">{t.vac_title}</h2>
           </div>
           <a href="#" className="view-all-link" id="view-all-jobs-link">
-            View All Vacancies →
+            {t.vac_follow_fb} →
           </a>
         </div>
 
@@ -76,13 +77,12 @@ export default function JobOpportunities() {
                   </div>
                 </div>
                 <div className="job-card-salary">{job.salary}</div>
-                <div className="job-card-deadline">{job.deadline}</div>
                 <a
                   href="#contact"
                   className="btn-view-vacancy"
                   id={`view-vacancy-${job.id}`}
                 >
-                  View Vacancy →
+                  {t.vac_apply} →
                 </a>
               </div>
             </article>

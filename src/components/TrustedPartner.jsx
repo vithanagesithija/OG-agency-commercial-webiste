@@ -1,10 +1,14 @@
-const POINTS = [
-  'OG Agency connects Sri Lankan candidates through the journey',
-  'Comprehensive documentation, guidance and support',
-  'In-house training, counseling and recruitment support',
-];
+import { useLang } from '../context/LanguageContext';
 
 export default function TrustedPartner() {
+  const { t } = useLang();
+
+  const POINTS = [
+    t.partner_point1,
+    t.partner_point2,
+    t.partner_point3,
+  ];
+
   return (
     <section className="partner" id="partner">
       <div className="container">
@@ -19,26 +23,25 @@ export default function TrustedPartner() {
             <div className="partner-stats">
               <div className="partner-stat">
                 <div className="partner-stat-num">4+</div>
-                <div className="partner-stat-label">Years Experience</div>
+                <div className="partner-stat-label">{t.partner_stat_years}</div>
               </div>
               <div className="partner-stat">
                 <div className="partner-stat-num">100+</div>
-                <div className="partner-stat-label">Employees Deployed</div>
+                <div className="partner-stat-label">{t.partner_stat_deployed}</div>
               </div>
               <div className="partner-stat">
                 <div className="partner-stat-num">24/7</div>
-                <div className="partner-stat-label">Candidate Support</div>
+                <div className="partner-stat-label">{t.partner_stat_support}</div>
               </div>
             </div>
           </div>
 
           {/* Content */}
           <div className="partner-content">
-            <div className="section-label">About OG Agency</div>
-            <h2 className="section-title">Your Trusted Partner</h2>
+            <div className="section-label">{t.partner_label}</div>
+            <h2 className="section-title">{t.partner_title}</h2>
             <p className="section-subtitle" style={{ marginTop: 10, marginBottom: 16 }}>
-              OG Agency connects Sri Lankan candidates through the journey to Japan with full
-              preparation, documentation and employment opportunities.
+              {t.partner_desc}
             </p>
             <ul className="partner-points">
               {POINTS.map((p, i) => (
@@ -46,7 +49,7 @@ export default function TrustedPartner() {
               ))}
             </ul>
             <a href="#contact" className="btn-hero-primary" id="learn-more-btn">
-              Learn More →
+              {t.partner_learn_btn} →
             </a>
           </div>
         </div>

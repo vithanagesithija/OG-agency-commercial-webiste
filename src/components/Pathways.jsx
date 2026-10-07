@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
+import { useLang } from '../context/LanguageContext';
 
 export default function Pathways() {
   const navigate = useNavigate();
+  const { t } = useLang();
 
   return (
     <section className="pathways" id="pathways">
@@ -9,11 +11,10 @@ export default function Pathways() {
 
         {/* Section Header */}
         <div className="pathways-header">
-          <div className="section-label">Two Pathways, One Goal</div>
-          <h2 className="section-title">Choose Your Pathway</h2>
+          <div className="section-label">{t.pathways_section_label}</div>
+          <h2 className="section-title">{t.pathways_section_title}</h2>
           <p className="section-subtitle pathways-subtitle">
-            We provide two structured pathways to help you achieve your dream of working in Japan.
-            Both pathways include training, support and comprehensive guidance.
+            {t.pathways_section_subtitle}
           </p>
         </div>
 
@@ -48,19 +49,18 @@ export default function Pathways() {
             <div className="pathway-card-body-v2">
               <div className="pathway-card-meta-row-v2">
                 <span className="pathway-badge titp">TITP</span>
-                <span className="pathway-card-subtitle">3–5 year program</span>
+                <span className="pathway-card-subtitle">{t.titp_duration}</span>
               </div>
-              <h3 className="pathway-card-title-v2">Technical Intern Training</h3>
+              <h3 className="pathway-card-title-v2">{t.titp_card_title}</h3>
               <p className="pathway-card-desc-v2">
-                A structured training-cum-employment pathway for candidates seeking to gain
-                technical expertise while working in Japan under guided supervision.
+                {t.titp_card_desc}
               </p>
               <button
                 className="btn-pathway titp btn-pathway-v2"
                 id="explore-titp-btn"
                 onClick={(e) => { e.stopPropagation(); navigate('/japan/titp'); }}
               >
-                Explore TITP →
+                {t.titp_explore_btn} →
               </button>
             </div>
           </div>
@@ -93,19 +93,18 @@ export default function Pathways() {
             <div className="pathway-card-body-v2">
               <div className="pathway-card-meta-row-v2">
                 <span className="pathway-badge ssw">SSW</span>
-                <span className="pathway-card-subtitle">Skills-based visa</span>
+                <span className="pathway-card-subtitle">{t.ssw_duration}</span>
               </div>
-              <h3 className="pathway-card-title-v2">Specified Skilled Worker</h3>
+              <h3 className="pathway-card-title-v2">{t.ssw_card_title}</h3>
               <p className="pathway-card-desc-v2">
-                A skilled worker visa category for candidates who meet the required skill and
-                Japanese language requirements for employment in Japan.
+                {t.ssw_card_desc}
               </p>
               <button
                 className="btn-pathway ssw btn-pathway-v2"
                 id="explore-ssw-btn"
                 onClick={(e) => { e.stopPropagation(); navigate('/japan/ssw'); }}
               >
-                Explore SSW →
+                {t.ssw_explore_btn} →
               </button>
             </div>
           </div>

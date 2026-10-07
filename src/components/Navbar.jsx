@@ -1,22 +1,24 @@
 import { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import LanguageSwitcher from './LanguageSwitcher';
-
-const NAV_LINKS = [
-  { label: 'Home',      href: '#home' },
-  { label: 'About Us',  href: '#about' },
-  { label: 'Vacancies', href: '#vacancies' },
-  { label: 'Contact',   href: '#contact' },
-];
+import { useLang } from '../context/LanguageContext';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { t } = useLang();
+
+  const NAV_LINKS = [
+    { labelKey: 'nav_home',    href: '#home' },
+    { labelKey: 'nav_about',   href: '#about' },
+    { labelKey: 'nav_vacancies', href: '#vacancies' },
+    { labelKey: 'nav_contact', href: '#contact' },
+  ];
 
   return (
     <nav className="navbar">
       <div className="navbar-inner">
 
-        {/* Logo — uploaded OG Agency logo */}
+        {/* Logo */}
         <a href="#home" className="navbar-logo" id="navbar-logo-link">
           <img
             src="/og_logo_new.png"
@@ -28,13 +30,13 @@ export default function Navbar() {
         {/* Nav Links */}
         <ul className={`navbar-links${open ? ' open' : ''}`}>
           {NAV_LINKS.map((link, i) => (
-            <li key={link.label}>
+            <li key={link.labelKey}>
               <a
                 href={link.href}
                 className={i === 0 ? 'active' : ''}
                 onClick={() => setOpen(false)}
               >
-                {link.label}
+                {t[link.labelKey]}
               </a>
             </li>
           ))}
@@ -44,7 +46,7 @@ export default function Navbar() {
         <div className="navbar-right">
           <LanguageSwitcher />
           <a href="#contact" className="navbar-apply-btn" id="navbar-apply-btn">
-            Apply Now →
+            {t.nav_apply} →
           </a>
           <button
             className="hamburger"

@@ -1,4 +1,5 @@
-﻿import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useLang } from "../context/LanguageContext";
 
 /* ─── Icons ─────────────────────────────────────────────── */
 const IconUser = () => (
@@ -20,7 +21,6 @@ const IconVerify = () => (
   </svg>
 );
 
-/* Interview & Matching — UserCheck: person with approval checkmark */
 const IconHandshake = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
     strokeLinecap="round" strokeLinejoin="round" width="26" height="26">
@@ -40,7 +40,6 @@ const IconDoc = () => (
   </svg>
 );
 
-/* Pre-Departure — paper-plane / send icon */
 const IconPlane = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
     strokeLinecap="round" strokeLinejoin="round" width="26" height="26">
@@ -49,7 +48,6 @@ const IconPlane = () => (
   </svg>
 );
 
-/* Travel & Arrival — map-pin: arrived at destination (Japan) */
 const IconArrival = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
     strokeLinecap="round" strokeLinejoin="round" width="26" height="26">
@@ -57,52 +55,6 @@ const IconArrival = () => (
     <circle cx="12" cy="10" r="3" />
   </svg>
 );
-
-/* ─── Step data ─────────────────────────────────────────── */
-const STEPS = [
-  {
-    num: "01",
-    label: "START",
-    Icon: IconUser,
-    title: "Registration & Counselling",
-    desc: "Register with OG Agency and receive guidance about suitable employment opportunities.",
-  },
-  {
-    num: "02",
-    label: null,
-    Icon: IconVerify,
-    title: "Qualification Verification",
-    desc: "We verify your Japanese language qualification, skills, documents and eligibility for the selected opportunity.",
-  },
-  {
-    num: "03",
-    label: null,
-    Icon: IconHandshake,
-    title: "Interview & Matching",
-    desc: "Meet suitable employers and get matched with available job opportunities.",
-  },
-  {
-    num: "04",
-    label: null,
-    Icon: IconDoc,
-    title: "Documentation & COE Application",
-    desc: "We assist with the required documents and support the Certificate of Eligibility (COE) application process.",
-  },
-  {
-    num: "05",
-    label: null,
-    Icon: IconPlane,
-    title: "Pre-Departure Support",
-    desc: "Receive guidance and final preparation before travelling to Japan.",
-  },
-  {
-    num: "06",
-    label: "JAPAN",
-    Icon: IconArrival,
-    title: "Travel & Arrival Support",
-    desc: "Support with your journey, airport arrival and initial settlement in Japan.",
-  },
-];
 
 /* ─── Animated SVG connector (desktop) ──────────────────── */
 function ConnectorArrow() {
@@ -122,6 +74,7 @@ function ConnectorArrow() {
 export default function Process() {
   const sectionRef = useRef(null);
   const [visible, setVisible] = useState(false);
+  const { t } = useLang();
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -134,17 +87,61 @@ export default function Process() {
     return () => obs.disconnect();
   }, []);
 
+  const STEPS = [
+    {
+      num: "01",
+      label: t.process_step1_label,
+      Icon: IconUser,
+      title: t.process_step1_title,
+      desc: t.process_step1_desc,
+    },
+    {
+      num: "02",
+      label: null,
+      Icon: IconVerify,
+      title: t.process_step2_title,
+      desc: t.process_step2_desc,
+    },
+    {
+      num: "03",
+      label: null,
+      Icon: IconHandshake,
+      title: t.process_step3_title,
+      desc: t.process_step3_desc,
+    },
+    {
+      num: "04",
+      label: null,
+      Icon: IconDoc,
+      title: t.process_step4_title,
+      desc: t.process_step4_desc,
+    },
+    {
+      num: "05",
+      label: null,
+      Icon: IconPlane,
+      title: t.process_step5_title,
+      desc: t.process_step5_desc,
+    },
+    {
+      num: "06",
+      label: t.process_step6_label,
+      Icon: IconArrival,
+      title: t.process_step6_title,
+      desc: t.process_step6_desc,
+    },
+  ];
+
   return (
     <section className="process pj-section" id="process" ref={sectionRef}>
       <div className="container">
 
         {/* ── Header ── */}
         <div className="pj-header">
-          <div className="section-label">Our Process</div>
-          <h2 className="section-title">From Sri Lanka to Japan</h2>
+          <div className="section-label">{t.process_label}</div>
+          <h2 className="section-title">{t.process_title}</h2>
           <p className="section-subtitle pj-subtitle">
-            We guide qualified candidates through every step of their employment
-            journey, from registration and employer matching to departure and arrival.
+            {t.process_subtitle}
           </p>
         </div>
 
@@ -177,14 +174,14 @@ export default function Process() {
                 </div>
 
                 {/* Step number */}
-                <div className="pj-step-num">STEP {step.num}</div>
+                <div className="pj-step-num">{t.process_step_label} {step.num}</div>
 
-                {/* Title — fixed-height area so descs all start at same Y */}
+                {/* Title */}
                 <div className="pj-step-title-wrap">
                   <div className="pj-step-title">{step.title}</div>
                 </div>
 
-                {/* Description — fills remaining card space */}
+                {/* Description */}
                 <div className="pj-step-desc-wrap">
                   <div className="pj-step-desc">{step.desc}</div>
                 </div>

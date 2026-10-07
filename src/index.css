@@ -3,7 +3,7 @@
    Design System
    ============================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&family=Noto+Sans+Sinhala:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap');
 
 *,
 *::before,
@@ -3749,4 +3749,56 @@ img {
   .ssw-float-worker {
     display: none;
   }
+}
+
+/* =====================
+   MULTILINGUAL FONT OVERRIDES
+   Applied via body class set by LanguageContext
+   ===================== */
+
+/* Sinhala — Noto Sans Sinhala for body text */
+body.lang-si,
+body.lang-si p,
+body.lang-si h1,
+body.lang-si h2,
+body.lang-si h3,
+body.lang-si h4,
+body.lang-si li,
+body.lang-si span:not(.lang-flag):not(.lang-option-native):not(.lang-check):not(.pathway-big-sub) {
+  font-family: 'Noto Sans Sinhala', 'Poppins', sans-serif;
+}
+
+/* Japanese — Noto Sans JP for body text */
+body.lang-ja,
+body.lang-ja p,
+body.lang-ja h1,
+body.lang-ja h2,
+body.lang-ja h3,
+body.lang-ja h4,
+body.lang-ja li,
+body.lang-ja span:not(.lang-flag):not(.lang-option-native):not(.lang-check):not(.pathway-big-sub):not(.visa-hero-jp) {
+  font-family: 'Noto Sans JP', 'Poppins', sans-serif;
+}
+
+/* Keep Poppins for navbar/buttons in non-Latin scripts for visual consistency */
+body.lang-si .navbar-apply-btn,
+body.lang-ja .navbar-apply-btn {
+  font-family: 'Noto Sans Sinhala', 'Poppins', sans-serif;
+}
+body.lang-ja .navbar-apply-btn {
+  font-family: 'Noto Sans JP', 'Poppins', sans-serif;
+}
+
+/* Slightly increase line height for Sinhala/Japanese for readability */
+body.lang-si p,
+body.lang-si .section-subtitle,
+body.lang-si .visa-hero-desc {
+  line-height: 1.85;
+}
+
+body.lang-ja p,
+body.lang-ja .section-subtitle,
+body.lang-ja .visa-hero-desc {
+  line-height: 1.9;
+  letter-spacing: 0.01em;
 }

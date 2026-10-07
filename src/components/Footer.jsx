@@ -1,22 +1,25 @@
 import { FaFacebook, FaYoutube, FaInstagram, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
-
-const QUICK_LINKS = [
-  { label: 'Home',      href: '#home' },
-  { label: 'About Us',  href: '#about' },
-  { label: 'TITP',      href: '#pathways' },
-  { label: 'SSW',       href: '#pathways' },
-  { label: 'Care Work', href: '#vacancies' },
-];
-
-const JOB_LINKS = [
-  { label: 'Construction',      href: '#vacancies' },
-  { label: 'Care Worker',       href: '#vacancies' },
-  { label: 'Agriculture',       href: '#vacancies' },
-  { label: 'Food Manufacturing',href: '#vacancies' },
-  { label: 'Care Jobs',         href: '#vacancies' },
-];
+import { useLang } from '../context/LanguageContext';
 
 export default function Footer() {
+  const { t } = useLang();
+
+  const QUICK_LINKS = [
+    { labelKey: 'footer_link_home',  href: '#home' },
+    { labelKey: 'footer_link_about', href: '#about' },
+    { labelKey: 'footer_link_titp',  href: '#pathways' },
+    { labelKey: 'footer_link_ssw',   href: '#pathways' },
+    { labelKey: 'footer_link_care',  href: '#vacancies' },
+  ];
+
+  const JOB_LINKS = [
+    { labelKey: 'footer_job_construction', href: '#vacancies' },
+    { labelKey: 'footer_job_care',         href: '#vacancies' },
+    { labelKey: 'footer_job_agriculture',  href: '#vacancies' },
+    { labelKey: 'footer_job_food',         href: '#vacancies' },
+    { labelKey: 'footer_job_carejobs',     href: '#vacancies' },
+  ];
+
   return (
     <footer className="site-footer" id="contact">
       <div className="container">
@@ -25,8 +28,7 @@ export default function Footer() {
           <div>
             <div className="footer-brand-name">OG AGENCY</div>
             <div className="footer-brand-desc">
-              Connecting Sri Lankan candidates through the journey to Japan with full
-              preparation, documentation and employment opportunities.
+              {t.footer_brand_desc}
             </div>
             <div className="footer-social">
               <a href="https://facebook.com" target="_blank" rel="noreferrer"
@@ -46,45 +48,45 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <div className="footer-col-title">Quick Links</div>
+            <div className="footer-col-title">{t.footer_quick_title}</div>
             <ul className="footer-links">
               {QUICK_LINKS.map(l => (
-                <li key={l.label}><a href={l.href}>{l.label}</a></li>
+                <li key={l.labelKey}><a href={l.href}>{t[l.labelKey]}</a></li>
               ))}
             </ul>
           </div>
 
           {/* Job Areas */}
           <div>
-            <div className="footer-col-title">Job Areas</div>
+            <div className="footer-col-title">{t.footer_job_title}</div>
             <ul className="footer-links">
               {JOB_LINKS.map(l => (
-                <li key={l.label}><a href={l.href}>{l.label}</a></li>
+                <li key={l.labelKey}><a href={l.href}>{t[l.labelKey]}</a></li>
               ))}
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <div className="footer-col-title">Contact Us</div>
+            <div className="footer-col-title">{t.footer_contact_title}</div>
             <div className="footer-contact-item">
               <div className="footer-contact-icon"><FaPhone /></div>
               <div className="footer-contact-text">
-                <span className="footer-contact-label">Phone</span>
+                <span className="footer-contact-label">{t.footer_phone_label}</span>
                 +94 76 123 4567
               </div>
             </div>
             <div className="footer-contact-item">
               <div className="footer-contact-icon"><FaEnvelope /></div>
               <div className="footer-contact-text">
-                <span className="footer-contact-label">Email</span>
+                <span className="footer-contact-label">{t.footer_email_label}</span>
                 info@ogagency.lk
               </div>
             </div>
             <div className="footer-contact-item">
               <div className="footer-contact-icon"><FaMapMarkerAlt /></div>
               <div className="footer-contact-text">
-                <span className="footer-contact-label">Address</span>
+                <span className="footer-contact-label">{t.footer_address_label}</span>
                 Colombo, Sri Lanka
               </div>
             </div>
@@ -100,11 +102,11 @@ export default function Footer() {
               <div className="footer-bottom-icon">OG</div>
               <div>
                 <div className="footer-bottom-text">OG AGENCY</div>
-                <div className="footer-bottom-tag">Your Future. Our Mission.</div>
+                <div className="footer-bottom-tag">{t.footer_tagline}</div>
               </div>
             </div>
             <div className="footer-copyright">
-              © 2025 OG Agency. All rights reserved.
+              {t.footer_copy}
             </div>
           </div>
         </div>
